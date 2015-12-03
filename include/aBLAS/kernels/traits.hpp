@@ -44,12 +44,12 @@ typename V::difference_type stride(vector_expression<V,Device> const&v) {
 }
 
 template <typename V>
-typename V::storage_type storage(vector_expression<V,cpu_tag>& v) { 
+typename V::value_type* storage(vector_expression<V,cpu_tag>& v) { 
 	return v().storage().data()+v().offset();
 }
 template <typename V>
-typename V::const_storage_type storage(vector_expression<V,cpu_tag> const& v) { 
-	return v().storage()+v().offset();
+typename V::value_type const* storage(vector_expression<V,cpu_tag> const& v) { 
+	return v().storage().data()+v().offset();
 }
 
 //////////////////Matrix Traits/////////////////////
@@ -63,11 +63,11 @@ typename M::difference_type stride2(matrix_expression<M,Device> const& m) {
 }
 
 template <typename M>
-typename M::storage_type storage(matrix_expression<M,cpu_tag>& m) { 
+typename  M::value_type* storage(matrix_expression<M,cpu_tag>& m) { 
 	return m().storage().data()+m().offset();
 }
 template <typename M>
-typename M::const_storage_type storage(matrix_expression<M,cpu_tag> const& m) { 
+typename M::value_type const* storage(matrix_expression<M,cpu_tag> const& m) { 
 	return m().storage().data()+m().offset();
 }
 
